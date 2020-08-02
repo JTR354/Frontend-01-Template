@@ -6,6 +6,7 @@
 .DS_Store
 .idea
 *.iml
+.vscode
 out
 gen
 node_modules
