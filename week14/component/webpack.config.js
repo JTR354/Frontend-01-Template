@@ -7,7 +7,8 @@ module.exports = {
   entry: path.join(__dirname, './src/carousel'),
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name].js',
+    publicPath: 'https://jtr354.github.io/Frontend-01-Template/week01/componet/dist/'
   },
   mode: 'development',
   resolve: {
@@ -31,7 +32,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, './index.html')
+      template: path.join(__dirname, './index.html'),
     })
   ]
 }

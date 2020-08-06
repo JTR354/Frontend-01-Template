@@ -18,5 +18,5 @@
   + 用同余定理简化下标循环的实现方式
 - 冷知识
   + setTimeout16s代替requestAnimationFrame双层嵌套的问题(或微任务Promise)
-
+-  [走马灯实现演示地址](https://jtr354.github.io/Frontend-01-Template/week14/component/dist/index.html)
 ### 2. 组件封装
