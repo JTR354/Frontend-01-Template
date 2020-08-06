@@ -8,7 +8,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: 'https://jtr354.github.io/Frontend-01-Template/week01/componet/dist/'
+    publicPath: 'https://jtr354.github.io/Frontend-01-Template/week14/component/dist/'
   },
   mode: 'development',
   resolve: {

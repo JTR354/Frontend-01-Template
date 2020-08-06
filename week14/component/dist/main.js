@@ -77,7 +77,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "https://jtr354.github.io/Frontend-01-Template/week01/componet/dist/";
+/******/ 	__webpack_require__.p = "https://jtr354.github.io/Frontend-01-Template/week14/component/dist/";
 /******/
 /******/
 /******/ 	// Load entry module and return exports
