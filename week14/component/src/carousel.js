@@ -22,7 +22,62 @@ class Carousel {
       fragment.appendChild(img)
     }
     this.root.appendChild(fragment)
-    this.autoPlay()
+    // this.autoPlay()
+    this.dragePlay()
+  }
+  dragePlay() {
+    const length = this.data.length
+    const childNodes = this.root.childNodes
+    const body = document.documentElement
+    let position = 0
+
+    const ImgWidth = 500
+    function down(e) {
+      const nextPosition = (position + 1) % length
+      const prevPosition = (position - 1 + length) % length
+      const startX = e.clientX
+      let moveX
+      childNodes[position].style.transition = 'ease 0s'
+      childNodes[nextPosition].style.transition = 'ease 0s'
+      childNodes[prevPosition].style.transition = 'ease 0s'
+      function move(e) {
+        moveX = e.clientX - startX 
+        moveX = Math.max(-ImgWidth, moveX)
+        moveX = Math.min(ImgWidth, moveX)
+        childNodes[position].style.transform = `translateX(${moveX + -position * ImgWidth}px)`
+        childNodes[nextPosition].style.transform = `translateX(${moveX + -nextPosition * ImgWidth + ImgWidth}px)`
+        childNodes[prevPosition].style.transform = `translateX(${moveX + -prevPosition * ImgWidth - ImgWidth}px)`
+      }
+      function up() {
+        childNodes[position].style.transition = ''
+        childNodes[nextPosition].style.transition = ''
+        childNodes[prevPosition].style.transition = ''
+        if (moveX > 100) {
+          childNodes[position].style.transform = `translateX(${-position * ImgWidth + ImgWidth}px)`
+          childNodes[nextPosition].style.transform = `translateX(${-nextPosition * ImgWidth + ImgWidth * 2}px)`
+          childNodes[prevPosition].style.transform = `translateX(${-prevPosition * ImgWidth}px)`
+          childNodes[position].removeEventListener('mousedown', down)
+          position = prevPosition
+        } else if (moveX < -100) {
+          childNodes[position].style.transform = `translateX(${-position * ImgWidth - ImgWidth}px)`
+          childNodes[nextPosition].style.transform = `translateX(${-nextPosition * ImgWidth}px)`
+          childNodes[prevPosition].style.transform = `translateX(${-prevPosition * ImgWidth - ImgWidth - ImgWidth}px)`
+          childNodes[position].removeEventListener('mousedown', down)
+          position = nextPosition
+        } else {
+          childNodes[position].style.transform = `translateX(${-position * ImgWidth}px)`
+          childNodes[nextPosition].style.transform = `translateX(${-nextPosition * ImgWidth + ImgWidth}px)`
+          childNodes[prevPosition].style.transform = `translateX(${-prevPosition * ImgWidth - ImgWidth}px)`
+        }
+        body.removeEventListener('mousemove', move)
+        setTimeout(() => {
+          childNodes[position].addEventListener('mousedown', down)
+        }, 16)
+      }
+      body.addEventListener('mousemove', move)
+      body.addEventListener('mouseup', up)
+    }
+    childNodes[position].addEventListener('mousedown', down)
   }
   autoPlay() {
     const length = this.data.length
@@ -33,22 +88,22 @@ class Carousel {
       const animations = [
         {
           node: childNodes[position],
-          end: `translateX(${-100 -100 * [position]}%)`,
+          end: `translateX(${-100 - 100 * [position]}%)`,
           start: `translateX(${-100 * [position]}%)`,
         },
         {
           node: childNodes[nextPosition],
           end: `translateX(${-100 * [nextPosition]}%)`,
-          start: `translateX(${100 -100 * [nextPosition]}%)`,
+          start: `translateX(${100 - 100 * [nextPosition]}%)`,
         },
       ]
-      animations.forEach(({node, start}) => {
+      animations.forEach(({ node, start }) => {
         node.style.transition = 'ease 0s'
         node.style.transform = start
       })
 
       setTimeout(() => {
-        animations.forEach(({node, end}) => {
+        animations.forEach(({ node, end }) => {
           node.style.transition = '' // '' = use css rules
           node.style.transform = end
         })
