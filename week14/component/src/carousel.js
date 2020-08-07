@@ -28,56 +28,62 @@ class Carousel {
   dragePlay() {
     const length = this.data.length
     const childNodes = this.root.childNodes
-    const body = document.documentElement
+    const ImgWidth = 500
     let position = 0
 
-    const ImgWidth = 500
     function down(e) {
       const nextPosition = (position + 1) % length
-      const prevPosition = (position - 1 + length) % length
+      const lastPosition = (position - 1 + length) % length
       const startX = e.clientX
-      let moveX
-      childNodes[position].style.transition = 'ease 0s'
-      childNodes[nextPosition].style.transition = 'ease 0s'
-      childNodes[prevPosition].style.transition = 'ease 0s'
+      const config = [
+        {
+          node: childNodes[position],
+          zero: -position * ImgWidth,
+          start: 0,
+        },
+        {
+          node: childNodes[lastPosition],
+          zero: -lastPosition * ImgWidth,
+          start: -ImgWidth,
+        },
+        {
+          node: childNodes[nextPosition],
+          zero: -nextPosition * ImgWidth,
+          start: ImgWidth,
+        }
+      ]
+      config.forEach(({node, start, zero}) => {
+        node.style.transition = 'ease 0s'
+        node.style.transform = `translateX(${start + zero}px)`
+      })
       function move(e) {
-        moveX = e.clientX - startX 
+        let moveX = e.clientX - startX 
         moveX = Math.max(-ImgWidth, moveX)
         moveX = Math.min(ImgWidth, moveX)
-        childNodes[position].style.transform = `translateX(${moveX + -position * ImgWidth}px)`
-        childNodes[nextPosition].style.transform = `translateX(${moveX + -nextPosition * ImgWidth + ImgWidth}px)`
-        childNodes[prevPosition].style.transform = `translateX(${moveX + -prevPosition * ImgWidth - ImgWidth}px)`
+        config.forEach(({node, start, zero}) => {
+          node.style.transform = `translateX(${moveX + start + zero}px)`
+        })
       }
-      function up() {
-        childNodes[position].style.transition = ''
-        childNodes[nextPosition].style.transition = ''
-        childNodes[prevPosition].style.transition = ''
-        if (moveX > 100) {
-          childNodes[position].style.transform = `translateX(${-position * ImgWidth + ImgWidth}px)`
-          childNodes[nextPosition].style.transform = `translateX(${-nextPosition * ImgWidth + ImgWidth * 2}px)`
-          childNodes[prevPosition].style.transform = `translateX(${-prevPosition * ImgWidth}px)`
-          childNodes[position].removeEventListener('mousedown', down)
-          position = prevPosition
-        } else if (moveX < -100) {
-          childNodes[position].style.transform = `translateX(${-position * ImgWidth - ImgWidth}px)`
-          childNodes[nextPosition].style.transform = `translateX(${-nextPosition * ImgWidth}px)`
-          childNodes[prevPosition].style.transform = `translateX(${-prevPosition * ImgWidth - ImgWidth - ImgWidth}px)`
-          childNodes[position].removeEventListener('mousedown', down)
-          position = nextPosition
-        } else {
-          childNodes[position].style.transform = `translateX(${-position * ImgWidth}px)`
-          childNodes[nextPosition].style.transform = `translateX(${-nextPosition * ImgWidth + ImgWidth}px)`
-          childNodes[prevPosition].style.transform = `translateX(${-prevPosition * ImgWidth - ImgWidth}px)`
+      function up(e) {
+        let moveX = e.clientX - startX 
+        let offset = 0
+        if (moveX < -100) {
+          offset = -1
+        } else if (moveX > 100){
+          offset = 1
         }
-        body.removeEventListener('mousemove', move)
-        setTimeout(() => {
-          childNodes[position].addEventListener('mousedown', down)
-        }, 16)
+        config.forEach(({node, start, zero}) => {
+          node.style.transition = ''
+          node.style.transform = `translateX(${offset * ImgWidth + start + zero}px)`
+        })
+        position = (-offset + position + length) % length
+        document.removeEventListener('mousemove', move)
+        document.removeEventListener('mouseup', up)
       }
-      body.addEventListener('mousemove', move)
-      body.addEventListener('mouseup', up)
+      document.addEventListener('mousemove', move)
+      document.addEventListener('mouseup', up)
     }
-    childNodes[position].addEventListener('mousedown', down)
+    this.root.addEventListener('mousedown', down)
   }
   autoPlay() {
     const length = this.data.length
