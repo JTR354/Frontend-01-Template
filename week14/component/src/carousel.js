@@ -22,8 +22,8 @@ class Carousel {
       fragment.appendChild(img)
     }
     this.root.appendChild(fragment)
-    // this.autoPlay()
-    this.dragePlay()
+    this.autoPlay()
+    // this.dragePlay()
   }
   dragePlay() {
     const length = this.data.length

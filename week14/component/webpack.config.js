@@ -5,7 +5,11 @@ var path = require('path')
 module.exports = (env) => {
   return {
     // entry: path.join(__dirname, './src/main'),
-    entry: path.join(__dirname, './src/carousel'),
+    // entry: path.join(__dirname, './src/carousel'),
+    entry: {
+      main: path.join(__dirname, './src/main'),
+      carousel: path.join(__dirname, './src/carousel')
+    },
     output: {
       path: path.join(__dirname, 'dist'),
       filename: '[name].js',
