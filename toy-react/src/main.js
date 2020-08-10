@@ -18,6 +18,13 @@ const element = <MyComponet id={123}>
     <span style="color:red">666</span>
   </p>
 </MyComponet>
+class App extends ToyReact.Componet {
+  render() {
+  return <div>
+    <h1>hello toy react</h1>
+    {element}
+  </div>
+  }
+}
 
-
-ToyReact.render(element, document.body)
+ToyReact.render(<App />, document.body)

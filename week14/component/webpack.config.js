@@ -32,7 +32,7 @@ module.exports = (env) => {
       overlay: true
     },
     optimization: {
-      splitChunks: false
+      minimize: false
     },
     plugins: [
       new CleanWebpackPlugin(),

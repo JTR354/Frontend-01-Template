@@ -10,7 +10,7 @@ module.exports = {
     open: false,
     overlay: true
   },
-  devtool: 'evl',
+  // devtool: 'evl',
   module: {
     rules: [{
       test: /\.jsx?$/,
@@ -35,6 +35,6 @@ module.exports = {
   ],
   mode: 'development',
   optimization: {
-    // splitChunks: false
+    minimize: false
   }
 }

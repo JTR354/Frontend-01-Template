@@ -40,9 +40,7 @@ class TextWrapper extends Componet {
   }
 }
 
-
-
-export default class ToyReact {
+class ToyReact {
   static createElement(type, attrribute, ...children) {
     let element
     if (typeof type === 'string') {
@@ -74,6 +72,12 @@ export default class ToyReact {
   }
 
   static render(vdom, element) {
+    console.log(vdom)
     vdom.mountTo(element)
   }
 }
+
+ToyReact.Componet = Componet
+
+
+export default ToyReact
