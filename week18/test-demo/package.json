@@ -34,5 +34,6 @@
         "babelrc": true
       }
     }
-  }
+  },
+  "dependencies": {}
 }
