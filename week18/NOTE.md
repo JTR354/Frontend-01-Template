@@ -85,6 +85,7 @@ debugger开启时，通过websocket连接vscode-ide和node-v8，该服务和node
 
 ### 测试工具
 - mocha
+- ava
 - jest
 - [Selenium Webdriver](https://wizardforcel.gitbooks.io/selenium-doc/content/official-site/introduction.html)
 - chai（断言库）
@@ -104,6 +105,10 @@ debugger开启时，通过websocket连接vscode-ide和node-v8，该服务和node
 - [YAML 语言教程 阮一峰](https://www.ruanyifeng.com/blog/2016/07/yaml.html)
 - [https://yaml.org/](https://yaml.org/)
 
+### ohter
+- [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development)
+- [TDD](https://en.wikipedia.org/wiki/Test-driven_development)
+- [DDD](https://en.wikipedia.org/wiki/Domain-driven_design)
 
 ---- 
 `home-work mocha report`  
@@ -116,3 +121,4 @@ All files  |   90.97 |    84.35 |     100 |   90.97 |
  parser.js |   90.97 |    84.35 |     100 |   90.97 | 95-98,111-114,144,168,187,234,255,271-274 
 -----------|---------|----------|---------|---------|-------------------------------------------
 ```
+- [https://github.com/Comet32/Frontend-01-Template/tree/master/week18](https://github.com/Comet32/Frontend-01-Template/tree/master/week18)
