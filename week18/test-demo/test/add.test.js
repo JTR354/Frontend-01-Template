@@ -1,18 +1,13 @@
-// var assert = require('assert');
+import * as mod from '../src/add.js';
+
+// import test from 'ava' 
+// test('add 6+8=14', t => {
+//     t.is(mod.add(6,8), 14);
+// });
+
+
 import assert from 'assert'
-import { add } from '../src/add.js';
-
-describe('Array', function () {
-  describe('#indexOf()', function () {
-    it('should return -1 when the value is not present', function () {
-      assert.equal([1, 2, 3].indexOf(4), -1);
-    });
-  });
+// var assert = require('assert');
+it('add 6+8=14', function () {
+  assert.equal(mod.add(6,8), 14);
 });
-
-
-describe('function add', () => {
-  it('add 6+8=14', () => {
-    assert(add(6,8), 14)
-  })
-})
