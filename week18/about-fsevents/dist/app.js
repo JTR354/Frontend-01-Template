@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("for (let i of [1,2,3]) {\n  console.log(i);\n}\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("for (let i of [1,2,3,4]) {\n  console.log(i);\n}\n\nconsole.log('hello fsevents 222233' )\n\nnew Array(100).fill({a: 225467})\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
