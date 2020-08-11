@@ -75,7 +75,39 @@ debugger开启时，通过websocket连接vscode-ide和node-v8，该服务和node
 `demo: babel vue npm fsevents`
 
 
-## 
-- line
-- function
-- branch
+## Test测试工具
+
+### 测试覆盖率Coverage维度
+- Statements
+- Branches
+- Functions
+- Lines
+
+### 测试工具
+- mocha
+- jest
+- [Selenium Webdriver](https://wizardforcel.gitbooks.io/selenium-doc/content/official-site/introduction.html)
+- chai（断言库）
+
+### 测试覆盖率
+- nyc
+- istanbul
+
+## 持续集成相关
+- [Codecov](https://docs.codecov.io/docs/supported-languages)
+- [Travis](https://docs.travis-ci.com/user/tutorial/)
+- [Benchmark](https://benchmarkjs.com/)
+- [jsperf](https://jsperf.com/)
+
+### YAML
+`YAML 是专门用来写配置文件的语言，非常简洁和强大，远比 JSON 格式方便`
+- [YAML 语言教程 阮一峰](https://www.ruanyifeng.com/blog/2016/07/yaml.html)
+- [https://yaml.org/](https://yaml.org/)
+
+`home-work mocha report`  
+>-----------|---------|----------|---------|---------|-------------------------------------------
+File       | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                         
+-----------|---------|----------|---------|---------|-------------------------------------------
+All files  |   90.97 |    84.35 |     100 |   90.97 |                                           
+ parser.js |   90.97 |    84.35 |     100 |   90.97 | 95-98,111-114,144,168,187,234,255,271-274 
+-----------|---------|----------|---------|---------|-------------------------------------------
