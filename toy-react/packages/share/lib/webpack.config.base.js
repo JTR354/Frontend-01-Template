@@ -1,10 +1,8 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+
 module.exports = {
-  entry: {
-    app: path.join(__dirname, './src/main.js')
-  },
   devServer: {
     stats: 'errors-only',
     open: false,
@@ -30,11 +28,12 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: './index.html'
+      template: path.join(__dirname, './index.html')
     })
   ],
   mode: 'development',
   optimization: {
+    // splitChunks: false
     minimize: false
   }
 }
