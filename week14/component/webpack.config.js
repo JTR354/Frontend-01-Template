@@ -1,5 +1,5 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-var {CleanWebpackPlugin} = require('clean-webpack-plugin')
+var { CleanWebpackPlugin } = require('clean-webpack-plugin')
 var path = require('path')
 
 module.exports = (env) => {
@@ -13,18 +13,23 @@ module.exports = (env) => {
     output: {
       path: path.join(__dirname, 'dist'),
       filename: '[name].js',
-      publicPath: env && env.production ? 'https://jtr354.github.io/Frontend-01-Template/week14/component/dist/': ''
+      publicPath:
+        env && env.production
+          ? 'https://jtr354.github.io/Frontend-01-Template/week14/component/dist/'
+          : ''
     },
     mode: 'development',
     resolve: {
       extensions: ['.js', '.jsx']
     },
     module: {
-      rules: [{
-        test: /\.jsx?$/,
-        exclude: '/node_modules/',
-        use: 'babel-loader',
-      }]
+      rules: [
+        {
+          test: /\.jsx?$/,
+          exclude: '/node_modules/',
+          use: 'babel-loader'
+        }
+      ]
     },
     devServer: {
       stats: 'errors-only',
@@ -37,7 +42,7 @@ module.exports = (env) => {
     plugins: [
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        template: path.join(__dirname, './index.html'),
+        template: path.join(__dirname, './index.html')
       })
     ]
   }

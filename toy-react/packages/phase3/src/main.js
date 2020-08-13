@@ -1,31 +1,31 @@
 import ToyReact, { Component } from './ToyReact'
 
-class List extends Component {
-  constructor() {
-    super()
-    this.state = {
-      dataArray: [1, 2, 3, 4, 5]
-    }
-  }
-  render() {
-    return (
-      <ul>
-        {this.state.dataArray.map((item, index) => {
-          return (
-            <li
-              onClick={() => {
-                this.state.dataArray[index]++
-                this.setState()
-              }}
-            >
-              <button>{item}</button>
-            </li>
-          )
-        })}
-      </ul>
-    )
-  }
-}
+// class List extends Component {
+//   constructor() {
+//     super()
+//     this.state = {
+//       dataArray: [1, 2, 3, 4, 5]
+//     }
+//   }
+//   render() {
+//     return (
+//       <ul>
+//         {this.state.dataArray.map((item, index) => {
+//           return (
+//             <li
+//               onClick={() => {
+//                 this.state.dataArray[index]++
+//                 this.setState()
+//               }}
+//             >
+//               <button>{item}</button>
+//             </li>
+//           )
+//         })}
+//       </ul>
+//     )
+//   }
+// }
 
 class Square extends Component {
   render() {

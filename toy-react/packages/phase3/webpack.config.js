@@ -1,9 +1,17 @@
+var path = require('path')
 const { merge } = require('webpack-merge')
 const { webpackConfigBase } = require('share')
-const path = require('path')
 
-module.exports = merge(webpackConfigBase, {
-  entry: {
-    app: path.join(__dirname, './src/main.js')
-  }
-})
+module.exports = (env) => {
+  return merge(webpackConfigBase, {
+    entry: {
+      main: path.join(__dirname, './src/main')
+    },
+    output: {
+      publicPath:
+        env && env.production
+          ? 'https://jtr354.github.io/Frontend-01-Template/toy-react/packages/phase3/dist/'
+          : ''
+    }
+  })
+}
