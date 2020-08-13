@@ -122,3 +122,4 @@ All files  |   90.97 |    84.35 |     100 |   90.97 |
 -----------|---------|----------|---------|---------|-------------------------------------------
 ```
 - [https://github.com/Comet32/Frontend-01-Template/tree/master/week18](https://github.com/Comet32/Frontend-01-Template/tree/master/week18)
+- [为 React 开发人员推荐 8 个测试工具、库和框架](https://www.infoq.cn/article/AtB2saQ6eodMr06tYaf7)
