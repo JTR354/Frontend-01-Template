@@ -35,3 +35,7 @@
 
 `参考：`
   - [React中JSX的本质：不是模板引擎，而是语法糖](https://mp.weixin.qq.com/s?__biz=MzUxMzcxMzE5Ng==&mid=2247489123&idx=1&sn=cd834b87ff89e1d88ecad5564756a0f8&chksm=f951a320ce262a364e11e0e5827682d23353d2a943cd1aa1a6f889bd95379df284b2b37d5f27&scene=27#wechat_redirect)
+
+  ----
+  `others：`
+  - [toy-react](https://jtr354.github.io/Frontend-01-Template/week14/component/dist/index.html)
