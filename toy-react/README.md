@@ -38,4 +38,4 @@
 
   ----
   `others：`
-  - [toy-react](https://jtr354.github.io/Frontend-01-Template/week14/component/dist/index.html)
+  - [toy-react](https://jtr354.github.io/Frontend-01-Template/toy-react/packages/phase3/dist/index.html)
