@@ -1,0 +1,9 @@
+{
+  "all": true,
+  "inclue": [
+    "test/**/"
+  ],
+  "extends": [
+    "@istanbuljs/nyc-config-babel"
+  ]
+}

@@ -1,7 +1,7 @@
 //.eslintrc.js
 module.exports = {
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 10,
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true

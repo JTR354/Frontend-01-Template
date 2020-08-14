@@ -24,9 +24,7 @@ class Carousel {
     let children = this.data.map((url) => {
       return <img src={url} draggable={false} />
     })
-    let root = <div class="carousel">
-      {children}
-    </div>
+    let root = <div class="carousel">{children}</div>
     // this.autoPlay(children)
     this.dragePlay(root.root, children)
     return root
@@ -40,13 +38,13 @@ class Carousel {
         {
           node: childNodes[position],
           end: `translateX(${-100 - 100 * [position]}%)`,
-          start: `translateX(${-100 * [position]}%)`,
+          start: `translateX(${-100 * [position]}%)`
         },
         {
           node: childNodes[nextPosition],
           end: `translateX(${-100 * [nextPosition]}%)`,
-          start: `translateX(${100 - 100 * [nextPosition]}%)`,
-        },
+          start: `translateX(${100 - 100 * [nextPosition]}%)`
+        }
       ]
       animations.forEach(({ node, start }) => {
         node.style.transition = 'ease 0s'
@@ -78,42 +76,44 @@ class Carousel {
         {
           node: childNodes[position],
           zero: -position * ImgWidth,
-          start: 0,
+          start: 0
         },
         {
           node: childNodes[lastPosition],
           zero: -lastPosition * ImgWidth,
-          start: -ImgWidth,
+          start: -ImgWidth
         },
         {
           node: childNodes[nextPosition],
           zero: -nextPosition * ImgWidth,
-          start: ImgWidth,
+          start: ImgWidth
         }
       ]
-      config.forEach(({node, start, zero}) => {
+      config.forEach(({ node, start, zero }) => {
         node.style.transition = 'ease 0s'
         node.style.transform = `translateX(${start + zero}px)`
       })
       function move(e) {
-        let moveX = e.clientX - startX 
+        let moveX = e.clientX - startX
         moveX = Math.max(-ImgWidth, moveX)
         moveX = Math.min(ImgWidth, moveX)
-        config.forEach(({node, start, zero}) => {
+        config.forEach(({ node, start, zero }) => {
           node.style.transform = `translateX(${moveX + start + zero}px)`
         })
       }
       function up(e) {
-        let moveX = e.clientX - startX 
+        let moveX = e.clientX - startX
         let offset = 0
         if (moveX < -100) {
           offset = -1
-        } else if (moveX > 100){
+        } else if (moveX > 100) {
           offset = 1
         }
-        config.forEach(({node, start, zero}) => {
+        config.forEach(({ node, start, zero }) => {
           node.style.transition = ''
-          node.style.transform = `translateX(${offset * ImgWidth + start + zero}px)`
+          node.style.transform = `translateX(${
+            offset * ImgWidth + start + zero
+          }px)`
         })
         position = (-offset + position + length) % length
         document.removeEventListener('mousemove', move)

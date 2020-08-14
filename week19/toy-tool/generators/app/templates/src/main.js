@@ -1,3 +1,5 @@
+import { createElement } from './lib'
+
 const data = [
   ' https://static001.geekbang.org/resource/image/bb/21/bb38fb7c1073eaee1755f81131f11d21.jpg ',
   ' https://static001.geekbang.org/resource/image/1b/21/1b809d9a2bdf3ecc481322d7c9223c21.jpg ',
@@ -5,29 +7,64 @@ const data = [
   ' https://static001.geekbang.org/resource/image/73/e4/730ea9c393def7975deceb48b3eb6fe4.jpg '
 ]
 
-// create
 class Carousel {
-  constructor() {
+  constructor(config) {
     this.root = null
+    this.children = []
     this.data = null
   }
-  render() {
-    this.root = document.createElement('div')
-    this.root.classList.add('carousel')
-    const fragment = document.createDocumentFragment()
-    for (const d of this.data) {
-      const img = new Image()
-      img.src = d
-      img.draggable = false
-      fragment.appendChild(img)
-    }
-    this.root.appendChild(fragment)
-    this.autoPlay()
-    // this.dragePlay()
+  setAttribute(name, value) {
+    // this.root.setAttribute(name, value)
+    this[name] = value
   }
-  dragePlay() {
+  appendChild(child) {
+    this.children.push(child)
+  }
+  render() {
+    let children = this.data.map((url) => {
+      return <img src={url} draggable={false} />
+    })
+    let root = <div class="carousel">{children}</div>
+    // this.autoPlay(children)
+    this.dragePlay(root.root, children)
+    return root
+  }
+  autoPlay(childNodes) {
     const length = this.data.length
-    const childNodes = this.root.childNodes
+    let position = 0
+    const nextPic = () => {
+      const nextPosition = (position + 1) % length
+      const animations = [
+        {
+          node: childNodes[position],
+          end: `translateX(${-100 - 100 * [position]}%)`,
+          start: `translateX(${-100 * [position]}%)`
+        },
+        {
+          node: childNodes[nextPosition],
+          end: `translateX(${-100 * [nextPosition]}%)`,
+          start: `translateX(${100 - 100 * [nextPosition]}%)`
+        }
+      ]
+      animations.forEach(({ node, start }) => {
+        node.style.transition = 'ease 0s'
+        node.style.transform = start
+      })
+
+      setTimeout(() => {
+        animations.forEach(({ node, end }) => {
+          node.style.transition = '' // '' = use css rules
+          node.style.transform = end
+        })
+        position = nextPosition
+      }, 16)
+
+      setTimeout(nextPic, 3000)
+    }
+    setTimeout(nextPic, 3000)
+  }
+  dragePlay(root, childNodes) {
+    const length = this.data.length
     const ImgWidth = 500
     let position = 0
 
@@ -85,49 +122,13 @@ class Carousel {
       document.addEventListener('mousemove', move)
       document.addEventListener('mouseup', up)
     }
-    this.root.addEventListener('mousedown', down)
+    root.addEventListener('mousedown', down)
   }
-  autoPlay() {
-    const length = this.data.length
-    const childNodes = this.root.childNodes
-    let position = 0
-    const nextPic = () => {
-      const nextPosition = (position + 1) % length
-      const animations = [
-        {
-          node: childNodes[position],
-          end: `translateX(${-100 - 100 * [position]}%)`,
-          start: `translateX(${-100 * [position]}%)`
-        },
-        {
-          node: childNodes[nextPosition],
-          end: `translateX(${-100 * [nextPosition]}%)`,
-          start: `translateX(${100 - 100 * [nextPosition]}%)`
-        }
-      ]
-      animations.forEach(({ node, start }) => {
-        node.style.transition = 'ease 0s'
-        node.style.transform = start
-      })
-
-      setTimeout(() => {
-        animations.forEach(({ node, end }) => {
-          node.style.transition = '' // '' = use css rules
-          node.style.transform = end
-        })
-        position = nextPosition
-      }, 16)
-
-      setTimeout(nextPic, 3000)
-    }
-    setTimeout(nextPic, 3000)
+  moutedTo(parent) {
+    this.render().moutedTo(parent)
   }
 }
 
-// create
-const carousel = new Carousel()
-// update
-carousel.data = data
-carousel.render()
-// mount
-document.getElementById('app').appendChild(carousel.root)
+const compoent = <Carousel data={data} />
+
+compoent.moutedTo(document.body)
