@@ -2,6 +2,7 @@
 
 ## toy-tool
 - init
+  + [webpack-compiler-instance](https://webpack.js.org/api/node/#compiler-instance)
 - dev/debugger
 - test
 
