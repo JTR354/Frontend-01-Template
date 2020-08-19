@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const archiver = require('archiver')
+const http = require('http')
 
 const filename = 'package'
 // const readStream = fs.createReadStream(
@@ -20,3 +21,14 @@ writeStream.on('end', () => {
   console.log(' zip end')
 })
 zip.finalize()
+
+const request = http.get({
+  host: 'localhost',
+  path: '/?filename=1.html',
+  port: 8081,
+  headers: { 'Accept-Encoding': 'br,gzip,deflate' }
+})
+
+request.on('response', (response) => {
+  console.log(response.headers['content-encoding'])
+})
